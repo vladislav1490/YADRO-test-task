@@ -1,11 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { UserService, User } from '../../services/user.service';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
-  imports: [],
+  standalone: true,
+  imports: [
+    CommonModule,
+    NzCardModule,
+    NzSpinModule,
+    NzButtonModule,
+    RouterLink
+  ],
   templateUrl: './user-detail.component.html',
-  styleUrl: './user-detail.component.scss'
+  styleUrls: ['./user-detail.component.scss']
 })
-export class UserDetailComponent {
+export class UserDetailComponent implements OnInit {
+  user?: User;
+  loading = true;
 
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
+
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.userService.getUser(id).subscribe({
+      next: (user) => {
+        this.user = user;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
+  }
 }

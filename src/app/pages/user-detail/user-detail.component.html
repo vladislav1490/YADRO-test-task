@@ -1,1 +1,19 @@
-<p>user-detail works!</p>
+<nz-spin [nzSpinning]="loading">
+  @if (user) {
+    <nz-card nzTitle="Информация о пользователе" [nzBordered]="true">
+      <p><strong>Имя:</strong> {{ user.name }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Телефон:</strong> {{ user.phone }}</p>
+      <p><strong>Город:</strong> {{ user.address.city }}</p>
+      <p><strong>Адрес:</strong> {{ user.address.street }}, {{ user.address.suite }}</p>
+      <p><strong>Компания:</strong> {{ user.company.name }}</p>
+      <p><strong>Веб-сайт:</strong> {{ user.website }}</p>
+
+      <a [routerLink]="['/users', user.id, 'edit']">
+        <button nz-button nzType="primary">Редактировать</button>
+      </a>
+    </nz-card>
+  } @else {
+    <p>Пользователь не найден</p>
+  }
+</nz-spin>
