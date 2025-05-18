@@ -1,0 +1,41 @@
+.user-detail-container {
+  padding: 24px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.user-card {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 8px 0;
+
+  .info-block {
+    flex: 1;
+
+    p {
+      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.4;
+
+      .icon {
+        margin-right: 8px;
+        color: #1890ff;
+      }
+    }
+  }
+}
+
+.edit-button {
+  text-align: right;
+  margin-top: 24px;
+
+  button {
+    padding: 0 24px;
+  }
+}

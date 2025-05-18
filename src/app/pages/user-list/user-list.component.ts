@@ -6,6 +6,7 @@ import { UserService, User } from '../../services/user.service';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { RouterLink } from '@angular/router';
 
@@ -18,6 +19,7 @@ import { RouterLink } from '@angular/router';
     NzTableModule,
     NzInputModule,
     NzButtonModule,
+    NzPaginationModule,
     NzIconModule,
     RouterLink
   ],

@@ -1,1 +1,53 @@
-<p>user-form works!</p>
+<div class="user-form-container">
+  <h2 class="form-title">
+    {{ isEdit ? 'Редактировать пользователя' : 'Создать нового пользователя' }}
+  </h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" nz-form [nzLayout]="'vertical'" class="styled-form">
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true">Имя</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Обязательное поле'">
+        <nz-input-group [nzPrefix]="userIcon">
+          <input formControlName="name" nz-input />
+        </nz-input-group>
+        <ng-template #userIcon><i nz-icon nzType="user"></i></ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzRequired]="true">Email</nz-form-label>
+      <nz-form-control [nzErrorTip]="'Введите корректный email'">
+        <nz-input-group [nzPrefix]="emailIcon">
+          <input formControlName="email" nz-input />
+        </nz-input-group>
+        <ng-template #emailIcon><i nz-icon nzType="mail"></i></ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>Телефон</nz-form-label>
+      <nz-form-control>
+        <nz-input-group [nzPrefix]="phoneIcon">
+          <input formControlName="phone" nz-input />
+        </nz-input-group>
+        <ng-template #phoneIcon><i nz-icon nzType="phone"></i></ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label>Сайт</nz-form-label>
+      <nz-form-control>
+        <nz-input-group [nzPrefix]="webIcon">
+          <input formControlName="website" nz-input />
+        </nz-input-group>
+        <ng-template #webIcon><i nz-icon nzType="global"></i></ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div class="submit-button">
+      <button nz-button nzType="primary" nzSize="large" nzShape="round" [disabled]="form.invalid">
+        {{ isEdit ? 'Сохранить изменения' : 'Создать пользователя' }}
+      </button>
+    </div>
+  </form>
+</div>

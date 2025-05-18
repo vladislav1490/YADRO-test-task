@@ -1,6 +1,17 @@
-<nav style="margin: 16px;">
-  <a routerLink="/users">Users</a> |
-  <a routerLink="/users/new">Create User</a>
-</nav>
+<nz-layout class="app-layout">
+  <nz-header class="app-header">
+    <div class="logo">YADRO</div>
+    <div class="nav-links">
+      <a routerLink="/users" routerLinkActive="active-link">Пользователи</a>
+      <a routerLink="/users/new" routerLinkActive="active-link">Создать</a>
+    </div>
+  </nz-header>
 
-<router-outlet></router-outlet>
+  <nz-content class="app-content">
+    <router-outlet />
+  </nz-content>
+
+  <nz-footer class="app-footer">
+    © {{ currentYear }} YADRO UI Test App
+  </nz-footer>
+</nz-layout>

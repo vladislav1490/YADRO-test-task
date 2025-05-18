@@ -5,6 +5,7 @@ import { UserService, User } from '../../services/user.service';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -15,6 +16,7 @@ import { RouterLink } from '@angular/router';
     NzCardModule,
     NzSpinModule,
     NzButtonModule,
+    NzIconModule,
     RouterLink
   ],
   templateUrl: './user-detail.component.html',

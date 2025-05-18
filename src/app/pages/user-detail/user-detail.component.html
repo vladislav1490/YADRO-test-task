@@ -1,19 +1,32 @@
-<nz-spin [nzSpinning]="loading">
-  @if (user) {
-    <nz-card nzTitle="Информация о пользователе" [nzBordered]="true">
-      <p><strong>Имя:</strong> {{ user.name }}</p>
-      <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Телефон:</strong> {{ user.phone }}</p>
-      <p><strong>Город:</strong> {{ user.address.city }}</p>
-      <p><strong>Адрес:</strong> {{ user.address.street }}, {{ user.address.suite }}</p>
-      <p><strong>Компания:</strong> {{ user.company.name }}</p>
-      <p><strong>Веб-сайт:</strong> {{ user.website }}</p>
+<div class="user-detail-container">
+  <nz-spin [nzSpinning]="loading">
+    @if (user) {
+      <nz-card [nzBordered]="false" nzTitle="Информация о пользователе" class="user-card">
+        <div class="user-info">
+          <div class="info-block">
+            <p><i nz-icon nzType="user" class="icon"></i> <strong>Имя:</strong> {{ user.name }}</p>
+            <p><i nz-icon nzType="mail" class="icon"></i> <strong>Email:</strong> {{ user.email }}</p>
+            <p><i nz-icon nzType="phone" class="icon"></i> <strong>Телефон:</strong> {{ user.phone }}</p>
+          </div>
 
-      <a [routerLink]="['/users', user.id, 'edit']">
-        <button nz-button nzType="primary">Редактировать</button>
-      </a>
-    </nz-card>
-  } @else {
-    <p>Пользователь не найден</p>
-  }
-</nz-spin>
+          <div class="info-block">
+            <p><i nz-icon nzType="environment" class="icon"></i> <strong>Город:</strong> {{ user.address.city }}</p>
+            <p><i nz-icon nzType="home" class="icon"></i> <strong>Адрес:</strong> {{ user.address.street }}, {{ user.address.suite }}</p>
+            <p><i nz-icon nzType="team" class="icon"></i> <strong>Компания:</strong> {{ user.company.name }}</p>
+            <p><i nz-icon nzType="global" class="icon"></i> <strong>Веб-сайт:</strong> {{ user.website }}</p>
+          </div>
+        </div>
+
+        <div class="edit-button">
+          <a [routerLink]="['/users', user.id, 'edit']">
+            <button nz-button nzType="primary" nzSize="large" nzShape="round">
+              <i nz-icon nzType="edit"></i> Редактировать
+            </button>
+          </a>
+        </div>
+      </nz-card>
+    } @else {
+      <p>Пользователь не найден</p>
+    }
+  </nz-spin>
+</div>

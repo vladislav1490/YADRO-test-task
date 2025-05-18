@@ -1,57 +1,73 @@
-<div class="search-bar">
-  <nz-input-group nzSearch [nzSuffix]="suffixIcon">
-    <input
-      nz-input
-      placeholder="Поиск по имени или email"
-      [(ngModel)]="searchTerm"
-      (ngModelChange)="onSearchChange()"
-    />
-  </nz-input-group>
-  <ng-template #suffixIcon>
-    <i nz-icon nzType="search"></i>
-  </ng-template>
-</div>
+<section class="user-list-container">
+  <div class="user-list-header">
+    <h2 class="title">Пользователи</h2>
+    <div class="search-bar">
+      <nz-input-group nzSearch [nzSuffix]="suffixIcon">
+        <input
+          nz-input
+          placeholder="Поиск по имени или email"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+          class="search-input"
+        />
+      </nz-input-group>
+      <ng-template #suffixIcon>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+    </div>
+  </div>
 
-<nz-table
-  [nzData]="pagedUsers"
-  [nzTotal]="filteredUsers.length"
-  [nzPageSize]="pageSize"
-  [nzScroll]="{ x: '1000px' }"
-  [nzBordered]="true"
-  [nzLoading]="loading"
-  [nzShowPagination]="true"
-  [(nzPageIndex)]="currentPage"
-  [nzFrontPagination]="false"
->
-  <thead>
-    <tr>
-      <th>Имя</th>
-      <th>Email</th>
-      <th>Город</th>
-      <th>Компания</th>
-      <th>Действия</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (user of pagedUsers; track user.id) {
+  <nz-table
+    class="user-table"
+    [nzData]="pagedUsers"
+    [nzPageSize]="pageSize"
+    [nzScroll]="{ x: '1000px' }"
+    [nzBordered]="false"
+    [nzLoading]="loading"
+    [nzShowPagination]="false"
+  >
+    <thead>
       <tr>
-        <td>{{ user.name }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.address.city }}</td>
-        <td>{{ user.company.name }}</td>
-        <td>
-          <a [routerLink]="['/users', user.id]">
-            <button nz-button nzType="link" nzShape="circle" nzTooltip="Просмотр">
-              <i nz-icon nzType="eye"></i>
-            </button>
-          </a>
-          <a [routerLink]="['/users', user.id, 'edit']">
-            <button nz-button nzType="link" nzShape="circle" nzTooltip="Редактировать">
-              <i nz-icon nzType="edit"></i>
-            </button>
-          </a>
-        </td>
+        <th>Имя</th>
+        <th>Email</th>
+        <th>Город</th>
+        <th>Компания</th>
+        <th style="text-align: center;">Действия</th>
       </tr>
-    }
-  </tbody>
-</nz-table>
+    </thead>
+    <tbody>
+      @for (user of pagedUsers; track user.id) {
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.address.city }}</td>
+          <td>{{ user.company.name }}</td>
+          <td style="text-align: center;">
+            <div class="action-buttons">
+              <a [routerLink]="['/users', user.id]">
+                <button nz-button nzType="default" nzShape="circle" nzTooltip="Просмотр">
+                  <i nz-icon nzType="eye"></i>
+                </button>
+              </a>
+              <a [routerLink]="['/users', user.id, 'edit']">
+                <button nz-button nzType="default" nzShape="circle" nzTooltip="Редактировать">
+                  <i nz-icon nzType="edit"></i>
+                </button>
+              </a>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </nz-table>
+
+  <div class="pagination-wrapper">
+    <nz-pagination
+      [nzPageSize]="pageSize"
+      [nzTotal]="filteredUsers.length"
+      [(nzPageIndex)]="currentPage"
+      [nzShowSizeChanger]="false"
+      [nzSimple]="false"
+    ></nz-pagination>
+  </div>
+</section>

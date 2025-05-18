@@ -1,4 +1,51 @@
-.search-bar {
-  max-width: 300px;
-  margin-bottom: 16px;
+.user-list-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: auto;
 }
+
+.user-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .search-bar {
+    max-width: 300px;
+    width: 100%;
+
+    .search-input {
+      border-radius: 8px;
+    }
+  }
+}
+
+.user-table {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+
+  button {
+    border: none;
+    box-shadow: none;
+  }
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+

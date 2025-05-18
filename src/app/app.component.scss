@@ -1,0 +1,50 @@
+.app-layout {
+  min-height: 100vh;
+
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #001529;
+    padding: 0 24px;
+
+    .logo {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #69c0ff;
+        }
+
+        &.active-link {
+          border-bottom: 2px solid #40a9ff;
+        }
+      }
+    }
+  }
+
+  .app-content {
+    padding: 24px;
+    background: #f0f2f5;
+    min-height: calc(100vh - 128px);
+  }
+
+  .app-footer {
+    text-align: center;
+    background: #001529;
+    color: #fff;
+    padding: 16px 0;
+  }
+}
