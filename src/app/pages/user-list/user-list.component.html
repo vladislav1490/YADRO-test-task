@@ -1,1 +1,57 @@
-<p>user-list works!</p>
+<div class="search-bar">
+  <nz-input-group nzSearch [nzSuffix]="suffixIcon">
+    <input
+      nz-input
+      placeholder="Поиск по имени или email"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange()"
+    />
+  </nz-input-group>
+  <ng-template #suffixIcon>
+    <i nz-icon nzType="search"></i>
+  </ng-template>
+</div>
+
+<nz-table
+  [nzData]="pagedUsers"
+  [nzTotal]="filteredUsers.length"
+  [nzPageSize]="pageSize"
+  [nzScroll]="{ x: '1000px' }"
+  [nzBordered]="true"
+  [nzLoading]="loading"
+  [nzShowPagination]="true"
+  [(nzPageIndex)]="currentPage"
+  [nzFrontPagination]="false"
+>
+  <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Email</th>
+      <th>Город</th>
+      <th>Компания</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (user of pagedUsers; track user.id) {
+      <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.address.city }}</td>
+        <td>{{ user.company.name }}</td>
+        <td>
+          <a [routerLink]="['/users', user.id]">
+            <button nz-button nzType="link" nzShape="circle" nzTooltip="Просмотр">
+              <i nz-icon nzType="eye"></i>
+            </button>
+          </a>
+          <a [routerLink]="['/users', user.id, 'edit']">
+            <button nz-button nzType="link" nzShape="circle" nzTooltip="Редактировать">
+              <i nz-icon nzType="edit"></i>
+            </button>
+          </a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</nz-table>
