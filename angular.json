@@ -57,7 +57,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/yadro-app/"
+              "baseHref": "/YADRO-test-task/"
             },
             "development": {
               "optimization": false,
