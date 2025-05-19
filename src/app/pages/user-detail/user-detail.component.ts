@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserService, User } from '../../services/user.service';
@@ -10,7 +10,6 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
-  standalone: true,
   imports: [
     CommonModule,
     NzCardModule,
@@ -26,14 +25,12 @@ export class UserDetailComponent implements OnInit {
   user?: User;
   loading = true;
 
-  constructor(
-    private route: ActivatedRoute,
-    private userService: UserService
-  ) {}
+  readonly #route = inject(ActivatedRoute);
+  readonly #userService = inject(UserService);
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getUser(id).subscribe({
+    const id = Number(this.#route.snapshot.paramMap.get('id'));
+    this.#userService.getUser(id).subscribe({
       next: (user) => {
         this.user = user;
         this.loading = false;

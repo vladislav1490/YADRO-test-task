@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService, User } from '../../services/user.service';
@@ -12,7 +12,6 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
-  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
@@ -34,10 +33,10 @@ export class UserListComponent implements OnInit {
   pageSize = 5;
   currentPage = 1;
 
-  constructor(private userService: UserService) {}
+  readonly #userService = inject(UserService)
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe({
+    this.#userService.getUsers().subscribe({
       next: (data) => {
         this.users = data;
         this.loading = false;
